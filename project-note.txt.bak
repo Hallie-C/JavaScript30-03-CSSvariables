@@ -1,0 +1,28 @@
+Playing with CSS Variables and JS
+- CSS variables can be updated with JavaScript, meaning that when you update a variable
+in CSS, everywhere on the page that variable is referenced will update itself.
+- With Sass, you define them at compile time and then it gets compiled and you cannot change it.
+
+ + A variable --base to hold the yellow base color
+ + A variable --spacing with default value of 10px for the spacing
+ + A variable --blur with default value of 10px for the blur level
+ 
+
+JAVASCRIPT
+How to write JavaScript and update the variables?
+- We're gonna select the 3 inputs element, so that when they change, we can then update the CSS 
+variables.
+ (when using querySelectorAll, it returns a NodeList.
+ The different is that an array has all kind of methods for dealing with an array like map and reduce
+ And there's only a few methods to use with NodeList - can be viewed in browser inspector.
+ -> So it's kinda convenience to convert the querySelectorAll returned NodeList to an array).
+
+- Next, we listen to the 'change' event of each inputs and add the handler.
+
+- For the handler, first thing we need to know is what is the suffix of the value that we're working on.
+For the color, it's just gonna be a hex code. However, the blur and spacing variables will be using 'px'
+as measurement.
+	-> Create a data- attribute: data-sizing="px" to hold the suffix value for blur and spacing input elements.
+	([element].dataset - the object contains all the data- attributes from that specific element).
+	+ Then access the suffix by getting the data-sizing from dataset object of the element OR nothing ''
+

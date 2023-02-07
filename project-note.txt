@@ -1,0 +1,38 @@
+Playing with CSS Variables and JS
+- CSS variables can be updated with JavaScript, meaning that when you update a variable
+in CSS, everywhere on the page that variable is referenced will update itself.
+- With Sass, you define them at compile time and then it gets compiled and you cannot change it.
+
+ + A variable --base to hold the yellow base color
+ + A variable --spacing with default value of 10px for the spacing
+ + A variable --blur with default value of 10px for the blur level
+ 
+
+JAVASCRIPT
+How to write JavaScript and update the variables?
+- We're gonna select the 3 inputs element, so that when they change, we can then update the CSS 
+variables.
+ (when using querySelectorAll, it returns a NodeList.
+ The different is that an array has all kind of methods for dealing with an array like map and reduce
+ And there's only a few methods to use with NodeList - can be viewed in browser inspector.
+ -> So it's kinda convenience to convert the querySelectorAll returned NodeList to an array).
+
+- Next, we listen to the 'change' event of each inputs and add the handler.
+
+- For the handler, first thing we need to know is what is the suffix of the value that we're working on.
+For the color, it's just gonna be a hex code. However, the blur and spacing variables will be using 'px'
+as measurement.
+	-> Create a data- attribute: data-sizing="px" to hold the suffix value for blur and spacing input elements.
+	([element].dataset - the object contains all the data- attributes from that specific element).
+	+ Then access the suffix by getting the data-sizing from dataset object of the element OR nothing ''
+
+- How to select CSS variables and update?
+ + We select entire document which is the :root
+ + Then set a property of (--base) ||(--spacing) || (--blur)
+ (The technique here is: 
+	~ We add the name attribute of input to be the same name with CSS variable. E.g, 
+		<input name="base"> -> {--base: 10px}
+	So that we will know which CSS variable is being changed and use this name attribute to update the correct CSS variable.
+	~ We can update the new data change to CSS variables by selecting the root element (document.documentElement)
+	then set it's style property to new value.
+		document.documentElement.style.setProperty(`--{this.name}`, this.value + suffix);
